@@ -1,0 +1,107 @@
+body {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('image.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.my-btn {
+  margin-right: 5px;
+  margin-top: 5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 5%;
+  border: none;
+  background: #eb9db8;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  font-family: 'Georgia', monospace;
+  font-weight: bold;
+}
+
+.my-btn:hover {
+  background: #b96884;
+}
+
+.my-btn:active {
+  filter: brightness(150%);
+}
+
+.my-btn.secondary:hover {
+  background: #b96884;
+}
+
+.my-btn.primary:hover {
+  background: #983759;
+}
+
+.my-btn.primary {
+  background: #d85c85;
+}
+
+.my-btn.secondary {
+  background: #b4346c;
+}
+
+.my-btn.execute {
+  width: 110px;
+  border-radius: 5%;
+}
+
+.result {
+  width: 220px;
+  height: 70px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  padding-right: 10px;
+  background: #ba5577;
+  text-align: right;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.5rem;
+  font-family: 'Georgia', monospace;
+}
+
+.signature {
+  color: rgb(0, 0, 0);
+  font-size: 1.8rem;
+  margin-top: 35px;
+  font-family: 'Georgia', monospace;
+  font-weight: bold;
+}
+
+
+.github {
+  margin-top: 35px;
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  background: #f29ab9;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  font-family: 'Georgia', monospace;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  line-height: 50px;
+}

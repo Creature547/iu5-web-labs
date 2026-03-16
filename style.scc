@@ -1,0 +1,302 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #fff;
+}
+
+.background {
+  position: fixed;
+  inset: 0;
+  background: url("image.png") center / cover no-repeat;
+  z-index: -2;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 31, 46, 0.75);
+  z-index: -1;
+}
+
+/* ===== Header ===== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  z-index: 100;
+}
+
+.logo {
+   position: relative;
+  font-size: 34px;
+  top: -6px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.logo span {
+  color: #fff;
+  font-size: 10px;
+}
+
+nav {
+  display: flex;
+  gap: 30px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 17px;
+  cursor: pointer;
+  padding: 10px 18px;
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  display: inline-block;
+  vertical-align: middle;   /* ключевая строка */
+  line-height: normal;
+}
+
+.tab-btn:hover {
+  background: rgba(130, 123, 123, 0.15);
+}
+
+.hero {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+}
+
+.hero h1 {
+  font-size: 60px;
+  margin-bottom: 50px;
+}
+
+.hero p {
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+.panel {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  flex-direction: column;
+}
+
+.panel.active {
+  display: flex;
+}
+
+
+#panel-calc {
+  background: linear-gradient(160deg,
+      #0a1f2e 0%,
+      #081826 35%,
+      #050d14 70%,
+      #02070b 100%);
+}
+
+.panel-header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.panel-content {
+  flex: 1;
+  display: flex;
+  align-items: center;          /* вертикальный центр */
+  justify-content: center;      /* горизонтальный центр */padding: 20px;
+}
+
+/* ===== КАЛЬКУЛЯТОР (БЕЗ ОКОШКА) ===== */
+.calc-wrapper {
+  width: 360px;
+  margin: 0 auto;               /* горизонтальный центр внутри flex */
+  display: flex;
+  flex-direction: column;
+  align-items: center;          /* на всякий случай центрирует содержимое */
+}
+
+#result {
+  width: 100%;
+  height: 70px;
+  background: #000;
+  color: #fff;
+  font-size: 40px;
+  text-align: right;
+  padding: 0 20px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  border: 3px solid #00ff9d;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.my-btn {
+  width: 70px;                    /* ← основной размер кнопок (увеличь до 80px или 90px, если хочешь крупнее) */
+  height: 70px;
+  background: #000;
+  color: #fff;
+  font-size: 28px;
+  border: 3px solid #00ff9d;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.my-btn:hover {
+  background: #00ff9d;
+  color: #000;
+}
+
+.my-btn.op,
+.my-btn.execute {
+  width: 70px;
+  background: #ff9500;
+  color: #000;
+  border-radius: 40px;
+  font-size: 36px;
+}
+
+.my-btn.execute:hover {
+  background: #00ff9d;
+  color: #000;
+}
+
+.my-btn.wide {
+  width: 70px;
+  border-radius: 40px;
+  font-size: 36px;
+  background: #ff9500;
+  color: #000;
+
+}
+
+.my-btn.empty {
+  visibility: hidden;
+}
+
+.about-fullscreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.about-fullscreen h2 {
+  font-size: 70px;
+  margin-bottom: 50px;
+  color: #00ff9d;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.about-fullscreen .name {
+  margin-bottom: 20px;
+  font-size: 42px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.about-fullscreen .group {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.about-fullscreen .please {
+  font-size: 40px;
+  margin-bottom: 50px;
+  color: #00ff9d;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 60px;
+}
+
+.partners-fullscreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.partners-fullscreen h2 {
+  font-size: 80px;
+  color: #00ff9d;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: bold;
+}
+
+.partners-columns {
+  display: flex;
+  justify-content: center;
+  gap: 150px;
+  /* расстояние между колонками */
+  width: 100%;
+}
+
+.partner-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.partner-fam {
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.partner-im {
+  font-size: 50px;
+  font-weight: bold;
+}

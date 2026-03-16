@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>EVgo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="background"></div>
+  <div class="overlay"></div>
+
+  <header id="main-header">
+    <a href="#" class="logo" onclick="resetView(); return false;">
+      EVgo <span style="display: block; margin-top: 2px;">FAST CHARGING</span>
+    </a>
+
+    <nav>
+      <a href="#" class="tab-btn" onclick="openPanel('calc'); return false;">Калькулятор</a>
+      <a href="#" class="tab-btn" onclick="openPanel('about'); return false;">Об исполнителе</a>
+      <a href="https://github.com/Creature547/iu5-web-labs" target="_blank" class="tab-btn">
+        Гитхаб
+      </a>
+      <a href="#" class="tab-btn" onclick="openPanel('partners'); return false;">Партнёры</a>
+    </nav>
+  </header>
+
+  <div id="hero" class="hero">
+    <h1>Начните заряжать<br>электромобиль с<br>помощью EVgo<br>уже сегодня</h1>
+    <p>Загрузите приложение EVgo на iOS и Android</p>
+  </div>
+
+  <div id="panel-calc" class="panel">
+    <div class="panel-header">
+      <a href="#" class="logo" onclick="closePanel(); return false;">
+        EVgo <span style="display: block; margin-top: 2px;">FAST CHARGING</span>
+      </a>
+    </div>
+
+    <div class="calc-wrapper">
+
+      <div id="result">0</div>
+
+      <div class="row">
+        <button class="my-btn" id="btn_op_clear">C</button>
+        <button class="my-btn" id="btn_op_sign">+/-</button>
+        <button class="my-btn" id="btn_op_percent">%</button>
+        <button class="my-btn op" id="btn_op_div">/</button>
+      </div>
+
+      <div class="row">
+        <button class="my-btn" id="btn_digit_7">7</button>
+        <button class="my-btn" id="btn_digit_8">8</button>
+        <button class="my-btn" id="btn_digit_9">9</button>
+        <button class="my-btn op" id="btn_op_mult">×</button>
+      </div>
+
+      <div class="row">
+        <button class="my-btn" id="btn_digit_4">4</button>
+        <button class="my-btn" id="btn_digit_5">5</button>
+        <button class="my-btn" id="btn_digit_6">6</button>
+        <button class="my-btn op" id="btn_op_minus">-</button>
+      </div>
+
+      <div class="row">
+        <button class="my-btn" id="btn_digit_1">1</button>
+        <button class="my-btn" id="btn_digit_2">2</button>
+        <button class="my-btn" id="btn_digit_3">3</button>
+        <button class="my-btn op" id="btn_op_plus">+</button>
+      </div>
+
+      <div class="row">
+        <button class="my-btn" id="btn_digit_0">0</button>
+        <button class="my-btn" id="btn_digit_dot">.</button>
+        <button class="my-btn execute wide" id="btn_op_equal">=</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="panel-about" class="panel">
+    <div class="panel-header">
+      <a href="#" class="logo" onclick="closePanel(); return false;">
+        EVgo <span style="display: block; margin-top: 2px;">FAST CHARGING</span>
+      </a>
+    </div>
+
+    <div class="panel-content about-fullscreen">
+      <h2>ОБ ИСПОЛНИТЕЛЕ</h2>
+
+      <p class="name">ГРЕМИНА АННА АЛЕКСАНДРОВНА</p>
+      <p class="group">ИУ5-45Б</p>
+
+      <p class="please">Поставьте 5, пожалуйста</p>
+    </div>
+  </div>
+
+  <div id="panel-partners" class="panel">
+    <div class="panel-header">
+      <a href="#" class="logo" onclick="closePanel(); return false;">
+        EVgo <span style="display: block; margin-top: 2px;">FAST CHARGING</span>
+      </a>
+    </div>
+
+    <div class="panel-content partners-fullscreen">
+      <h2>ПАРТНЁРЫ</h2>
+
+      <div class="partners-columns">
+        <div class="partner-column">
+          <p class="partner-fam">Воложенкова</p>
+          <p class="partner-im">Виктория</p>
+        </div>
+        <div class="partner-column">
+          <p class="partner-fam">Эльсон</p>
+          <p class="partner-im">Элина</p>
+        </div>
+        <div class="partner-column">
+          <p class="partner-fam">Корольков</p>
+          <p class="partner-im">Игорь</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

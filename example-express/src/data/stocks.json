@@ -1,20 +1,37 @@
 [
   {
     "id": 1,
-    "src": "https://i.pinimg.com/originals/c9/ea/65/c9ea654eb3a7398b1f702c758c1c4206.jpg",
-    "title": "1111",
-    "text": "11"
+    "src": "https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=300&h=200&fit=crop",
+    "title": "Лев",
+    "text": "Царь зверей",
+    "weight": "250 kg"
   },
   {
-    "id": 2,
+    "id": 3,
+    "src": "https://images.unsplash.com/photo-1517783999520-f068d7431a60?q=80&w=300&h=200&fit=crop",
+    "title": "Пингвин",
+    "text": "Житель льдов",
+    "weight": "100 kg"
+  },
+  {
+    "id": 4,
     "src": "https://i.pinimg.com/originals/c9/ea/65/c9ea654eb3a7398b1f702c758c1c4206.jpg",
-    "title": "Обновленное название",
-    "text": "Обновленное описание"
+    "title": "бегемот",
+    "text": "Опасное животное",
+    "weight": "250 kg"
   },
   {
     "id": 5,
     "src": "https://i.pinimg.com/originals/c9/ea/65/c9ea654eb3a7398b1f702c758c1c4206.jpg",
-    "title": "Новая акция",
-    "text": "Описание новой акции"
+    "title": "Гиппопотам",
+    "text": "Очень опасное животное",
+    "weight": "300 kg"
+  },
+  {
+    "id": 6,
+    "src": "https://i.pinimg.com/originals/c9/ea/65/c9ea654eb3a7398b1f702c758c1c4206.jpg",
+    "title": "Гиппопотам",
+    "text": "Очень опасное животное",
+    "weight": "300 kg"
   }
 ]

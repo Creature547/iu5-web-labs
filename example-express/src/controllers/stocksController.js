@@ -15,14 +15,13 @@ const getStockById = (req, res) => {
 
 
 const createStock = (req, res) => {
-    const { src, title, text } = req.body;
+    const { src, title, text, weight } = req.body;
 
-
-    if (!src || !title || !text) {
+    if (!src || !title || !text || !weight) {
         return res.status(400).json({ error: 'Не все поля заполнены' });
     }
 
-    const newStock = stocksService.create({ src, title, text });
+    const newStock = stocksService.create({ src, title, text, weight });
     res.status(201).json(newStock);
 };
 
@@ -44,10 +43,18 @@ const deleteStock = (req, res) => {
     res.status(204).send();
 };
 
+const deleteSmallAnimals = (req, res) => {
+    const deletedCount = stocksService.removeLightweight(100);
+    res.json({ message: `Удалено животных: ${deletedCount}` });
+};
+
+
+
 module.exports = {
     getAllStocks,
     getStockById,
     createStock,
     updateStock,
-    deleteStock
+    deleteStock,
+    deleteSmallAnimals
 };

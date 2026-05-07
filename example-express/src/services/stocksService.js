@@ -20,21 +20,21 @@ const findOne = (id) => {
     return stocks.find(stock => stock.id === id);
 };
 
+
+
 const create = (stockData) => {
     const stocks = fileService.readData(dataFilePath);
-
-
-    const newId = stocks.length > 0
-        ? Math.max(...stocks.map(s => s.id)) + 1
-        : 1;
-
-    const newStock = { id: newId, ...stockData };
+    const newStock = {
+        id: stocks.length > 0 ? Math.max(...stocks.map(s => s.id)) + 1 : 1,
+        src: stockData.src,
+        title: stockData.title,
+        text: stockData.text,
+        weight: stockData.weight
+    };
     stocks.push(newStock);
     fileService.writeData(dataFilePath, stocks);
-
     return newStock;
 };
-
 
 const remove = (id) => {
     const stocks = fileService.readData(dataFilePath);
@@ -56,4 +56,16 @@ const update = (id, stockData) => {
     return stocks[index];
 };
 
-module.exports = { init, findAll, findOne, create, update, remove };
+const removeLightweight = (minWeight) => {
+    let stocks = fileService.readData(dataFilePath);
+
+    const filteredStocks = stocks.filter(stock => {
+        const weightValue = parseInt(stock.weight) || 0;
+        return weightValue >= minWeight;
+    });
+
+    fileService.writeData(dataFilePath, filteredStocks);
+    return stocks.length - filteredStocks.length; 
+};
+
+module.exports = { init, findAll, findOne, create, update, remove, removeLightweight };

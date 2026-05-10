@@ -1,22 +1,27 @@
 import {ProductCardComponent} from "../../components/product-card/index.js";
 import {ProductPage} from "../product/index.js";
 
+
+let rl;
+if (typeof process !== 'undefined' && process.stdin) {
+    const readline = await import('readline');
+    rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+}
+
 export class MainPage {
     constructor(parent) {
         this.parent = parent;
     }
 
-    // --- ФУНКЦИИ ПО ДЗ ---
-    // 1.1: Склеиваем заголовок
     concatenate(arr, sep) { return arr.join(sep); }
 
-    // 1.10: Чистим данные от пустых значений
     erase(data) { return data.filter(item => item !== null && item !== undefined); }
 
-    // 2.4: Разница (выделяем только особенных животных)
     diff(arr1, arr2) { return arr1.filter(x => !arr2.includes(x)); }
 
-    // 3.1: Мерджим данные о животном
     merge(...objs) {
         const res = {};
         objs.forEach(obj => {
@@ -26,14 +31,13 @@ export class MainPage {
     }
 
     getData() {
-        // Цикл с постусловием (требование ДЗ)
         let attempt = 0;
-        do { attempt++; } while (attempt < 1); // Просто формальность для условия
+        do { attempt++; } while (attempt < 1);
 
         const rawAnimals = [
             { id: 1, title: "Лев" },
             { id: 2, title: "Слон" },
-            null, // Это удалит функция erase
+            null,
             { id: 3, title: "Пингвин" }
         ];
 
@@ -66,4 +70,49 @@ export class MainPage {
             });
         });
     }
+
+    anagram(words) {
+    const groups = {};
+
+    words.forEach(word => {
+        const sortedKey = word.toLowerCase().split('').sort().join('');
+
+        if (!groups[sortedKey]) {
+            groups[sortedKey] = [];
+        }
+        groups[sortedKey].push(word);
+    });
+
+    return Object.values(groups)
+        .filter(group => group.length >= 2)
+        .map(group => group.sort())
+        .sort((a, b) => a[0].localeCompare(b[0]));
+}
+}
+
+
+if (rl) {
+    const page = new MainPage();
+
+    rl.question("1. [DIFF] Введите первый массив через запятую: ", (input1) => {
+        rl.question("   Введите второй массив через запятую: ", (input2) => {
+            const arr1 = input1.split(',').map(s => s.trim()).filter(s => s);
+            const arr2 = input2.split(',').map(s => s.trim()).filter(s => s);
+
+            console.log("Результат DIFF:", page.diff(arr1, arr2));
+
+            rl.question("2. [ANAGRAM] Введите слова через запятую: ", (input3) => {
+                const words = input3.split(',').map(s => s.trim()).filter(s => s);
+                const anagramResult = page.anagram(words);
+
+                console.log("Результат ANAGRAM (от 2 слов):", JSON.stringify(anagramResult, null, 2));
+
+                rl.close();
+            });
+        });
+    });
+} else {
+    const testPage = new MainPage();
+    console.log("Тест diff:", testPage.diff(['Лев', 'Слон'], ['Слон']));
+    console.log("Тест anagram:", testPage.anagram(['сон', 'нос', 'лес', 'сел', 'дом']));
 }

@@ -1,0 +1,71 @@
+const fileService = require('./fileService');
+let dataFilePath;
+
+const init = (filePath) => {
+    dataFilePath = filePath;
+};
+
+const findAll = (title) => {
+    const stocks = fileService.readData(dataFilePath);
+    if (title) {
+        return stocks.filter(stock =>
+            stock.title.toLowerCase().includes(title.toLowerCase())
+        );
+    }
+    return stocks;
+};
+
+const findOne = (id) => {
+    const stocks = fileService.readData(dataFilePath);
+    return stocks.find(stock => stock.id === id);
+};
+
+
+
+const create = (stockData) => {
+    const stocks = fileService.readData(dataFilePath);
+    const newStock = {
+        id: stocks.length > 0 ? Math.max(...stocks.map(s => s.id)) + 1 : 1,
+        src: stockData.src,
+        title: stockData.title,
+        text: stockData.text,
+        weight: stockData.weight
+    };
+    stocks.push(newStock);
+    fileService.writeData(dataFilePath, stocks);
+    return newStock;
+};
+
+const remove = (id) => {
+    const stocks = fileService.readData(dataFilePath);
+    const filteredStocks = stocks.filter(s => s.id !== id);
+    if (filteredStocks.length === stocks.length) return false;
+    fileService.writeData(dataFilePath, filteredStocks);
+    return true;
+};
+
+const update = (id, stockData) => {
+    const stocks = fileService.readData(dataFilePath);
+    const index = stocks.findIndex(s => s.id === id);
+
+    if (index === -1) return null;
+
+    stocks[index] = { ...stocks[index], ...stockData };
+
+    fileService.writeData(dataFilePath, stocks);
+    return stocks[index];
+};
+
+const removeLightweight = (minWeight) => {
+    let stocks = fileService.readData(dataFilePath);
+
+    const filteredStocks = stocks.filter(stock => {
+        const weightValue = parseInt(stock.weight) || 0;
+        return weightValue >= minWeight;
+    });
+
+    fileService.writeData(dataFilePath, filteredStocks);
+    return stocks.length - filteredStocks.length; 
+};
+
+module.exports = { init, findAll, findOne, create, update, remove, removeLightweight };

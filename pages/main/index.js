@@ -1,5 +1,8 @@
 import {ProductCardComponent} from "../../components/product-card/index.js";
 import {ProductPage} from "../product/index.js";
+// Добавляем импорты для работы с сетью
+import {ajax} from "../../modules/ajax.js";
+import {stockUrls} from "../../modules/stockUrls.js";
 
 export class MainPage {
     constructor(parent) {
@@ -10,28 +13,19 @@ export class MainPage {
         return document.getElementById('main-page');
     }
 
-    // Данные по 4 варианту (Животные)
+    // Запрос к API вместо статического массива
     getData() {
-        return [
-            {
-                id: 1,
-                src: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=300&h=200&fit=crop",
-                title: "Лев",
-                text: "Царь зверей"
-            },
-            {
-                id: 2,
-                src: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?q=80&w=300&h=200&fit=crop",
-                title: "Слон",
-                text: "Величественный гигант"
-            },
-            {
-                id: 3,
-                src: "https://images.unsplash.com/photo-1517783999520-f068d7431a60?q=80&w=300&h=200&fit=crop",
-                title: "Пингвин",
-                text: "Житель льдов"
-            }
-        ];
+        ajax.get(stockUrls.getStocks(), (data) => {
+            this.renderData(data);
+        });
+    }
+
+    // Отдельный метод для отрисовки данных, которые пришли с сервера
+    renderData(items) {
+        items.forEach((item) => {
+            const productCard = new ProductCardComponent(this.pageRoot);
+            productCard.render(item, this.clickCard.bind(this));
+        });
     }
 
     clickCard(e) {
@@ -40,7 +34,7 @@ export class MainPage {
         productPage.render();
     }
 
-   render() {
+    render() {
         this.parent.innerHTML = '';
         const html = `
             <div class="container mt-5">
@@ -49,18 +43,14 @@ export class MainPage {
 
                 <div class="fixed-bottom bg-primary text-white py-2">
                     <marquee behavior="scroll" direction="left">
-                        Добро пожаловать в мир дикой природы! Узнайте больше о львах, слонах и пингвинах в нашей галерее.
-                        Вариант №4 — Выполнено студенткой группы ИУ5-45Б Аней.
+                        Добро пожаловать в мир дикой природы! Узнайте больше в нашей галерее.
                     </marquee>
                 </div>
             </div>
         `;
         this.parent.insertAdjacentHTML('beforeend', html);
 
-        const data = this.getData();
-        data.forEach((item) => {
-            const productCard = new ProductCardComponent(this.pageRoot);
-            productCard.render(item, this.clickCard.bind(this));
-        });
+        // Запускаем процесс получения данных
+        this.getData();
     }
 }

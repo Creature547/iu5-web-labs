@@ -1,839 +1,312 @@
-# ЛР 3. Простое веб-приложение. Верстка
+# Домашнее задание 1. Часть 1
 
-**Цель** данной лабораторной работы - знакомство с node, npm, написание простого приложения на JavaScript. В ходе выполнения работы, вам предстоит ознакомиться с кодом реализации простого интерфейса и вывода данных, и затем выполнить задания по варианту.
+**Тема:** Задачки на цикли, массивы, коллекции, объекты на JS
 
-## План
+## Задание для всех
 
-1. Инструменты для работы
-2. Что такое node, npm и package.json
-3. Как работать с html в JS
-4. Инициализация проекта
-5. Создание главной страницы, подключение bootstrap
-6. Простая кнопка на JavaScript
-7. Структурирование проекта
-8. Верстка главной страницы
-9. Верстка страницы продукта
+| 1ая буква фамилии | 2 уровень |
+| ----------------- | --------- |
+| А                 | 2.2       |
+| Б, В              | 2.3       |
+| Г, Д              | 2.4       |
+| Е, Ё, Ж           | 2.5       |
+| З, И              | 2.6       |
+| Й, К              | 2.7       |
+| Л, М              | 2.8       |
+| Н, О, П           | 2.9       |
+| Р, С              | 2.10      |
+| Т, У, Ф           | 2.11      |
+| Х, Ц, Ч           | 2.12      |
+| Ш, Щ, Ы           | 2.13      |
+| Э, Ю, Я           | 2.1       |
 
-## 1. Инструменты для работы
+| Группа           | 3 уровень         |
+| ---------------- | ----------------- |
+| номер группы ИУ5 | 3.1-3.6           |
+| ГУИМЦ            | 3.7               |
+| РТ5              | 3.8               |
 
-Для работы будем использовать инструменты из предыдущих лабораторной работы: [VS Code][vs-code] + [Live Server][vs-code-live-server].
+## Дополнительное задание для закрепления
 
-**Перед началом работы необходимо установить на свой компьютер [Node.js][node-install].**
+| 1ая буква имени   | 1 уровень |
+| ----------------- | --------- |
+| А                 | 1.1, 1.10 |
+| Б, В              | 1.2, 1.8  |
+| Г, Д              | 1.3, 1.4  |
+| Е, Ё, Ж           | 1.4, 1.9  |
+| З, И              | 1.5, 1.1  |
+| Й, К              | 1.6, 1.7  |
+| Л, М              | 1.7, 1.3  |
+| Н, О, П           | 1.8, 1.3  |
+| Р, С              | 1.9, 1.7  |
+| Т, У, Ф           | 1.1, 1.9  |
+| Х, Ц, Ч           | 1.2, 1.8  |
+| Ш, Щ, Ы           | 1.3, 1.5  |
+| Э, Ю, Я           | 1.4, 1.1  |
 
-## 2. Что такое node, npm и package.json
 
-### Node.js
+## Уровни задач
 
-Наш JavaScript код, который мы писали в предыдущих лабораторных, исполняется в браузере. В браузере у нас есть компилятор JavaScript кода в машинных код, в Google Chrome это движок [V8][v8]. Если мы хотим запускать код на нашем компьютере, а не в браузере, то нам нужно использовать [Node.js][node]. Node - это программная платформа, которая позволяет компилировать JavaScript код в машинный на нашем компьютере. Node.js добавляет возможность нам взаимодействовать с утройствами ввода-вывода, подключать внешние библиотеки. На нем в основном пишут веб-сервера, но есть возможность разрабатывать и десктопные оконные приложения и даже программировать микроконтроллеры.
+Варианты заданий будут делится на 3 уровня сложности, где 1 - самый легкий уровень сложности,
+3 - наиболее высокий соответственно.
 
-### Установка Node.js
-- для установки node.js на macOS используйте [Homebrew](https://brew.sh)
-- для установки node.js на Windows используйте [nvm](https://learn.microsoft.com/ru-ru/windows/dev-environment/javascript/nodejs-on-windows)
+*Задача 1 уровня сложности* - небольшая задачка, которую можно решить в несколько строк кода,
+зная синтаксис языка или необходимо написать маленький простой алгоритм
 
-### Npm
+*Задача 2 уровня* - задача, где необходимо поработать с структурами данных (СД),
+возможно заиспользовать несколько СД и придумать алгоритм
+решения представленной задачи, учесть краевые "кейсы".
 
-В любом языке программирования нам нужно уметь работать с внешними библиотеками. На фронтенде для этого используется пакетный менеджер [Npm][npm]. С помощью npm мы можем скачивать нужные нам пакеты, которые потом будем использовать в нашем приложении. Все наши библиотеки скачиваются в специальную папку `node_modules`, вы увидите ее у себя в проекте, когда скачаете первую библиотеку.
+*Задача 3 уровня* - задача, с более углубленной работой с СД в JS, необходимо либо самому придумать алгоритм,
+либо поиспользовать какой-нибудь неочевидный на первый взгляд, также учесть краевые кейсы.
 
-### Package.json и package-lock.json
+P.S Задачи 2 и 3 уровней встречаются в качестве базовых на собеседованиях на стажировки в крупные IT компании такие как:
+Яндекс, Ozon, Aliexpress, VK и т.д.
 
-[Package.json][package.json] - это основной файл в нашем приложении, который хранит всю информацию о проекте. В этом файле хранится название проекта, описания, версия, скрипты и многое другое. Именно в этом файле храниться информация о всех пакетах, которые мы поставили через npm, и версия этих зависимостей.
+~~**Для выполнения домашнего задания нужно набрать 4 балла.**~~
 
-[Package-lock.json][package-lock.json] - это файл, который хранит дерево зависимостей. Библиотеки, которые мы устанавливаем, могут иметь вложенные зависимости и этот файл хранит полное дерево.
+| Уровень задачи | Количество баллов |
+| -------------- | ----------------- |
+| 1 уровень      | 1 балл            |
+| 2 уровень      | 2 балла           |
+| 3 уровень      | 4 балла           |
 
-## 3. Как работать с html в JS
+## 1 уровень
 
-В прошлых лабораторных работах мы уже работали с HTML версткой из нашего JavaScript кода, для этого у нас есть общирное API по работе с [DOM деревом][dom-api]. Сегодня мы будем использовать **getElementById** и **insertAdjacentHTML**, но функций намного больше.
+### Задание 1.1 (`1 уровень`)
 
-## 4. Инициализация проекта
-
-* Создаем пустую папку и открываем ее в VS Code.
-* Инициализируем проект в npm с помощью команды `npm init`.
-
-При инициализации проекта у нас будут спрашивать много вопросов, но их все можно пропустить нажав `Enter`. В конце у нас появится настроенный файл `package.json`.
-
-Во все проекты принято добавлять `.gitignore` файл, который не будет добавлять лишнее в наш git репозиторий. Подробнее о `.gitignore` можно почитать [тут][about-gitignore].
-
-* Создаем файл `.gitignore` и копируем туда содержимое [файла](./assets/.gitignore).
-
-Мы создали проект, который состоит из файлов `package.json` и `.gitignore`. Можно приступать к написанию основного кода.
-
-***По итогу мы имеем следующую структуру проекта.***
-
-```bash
-├── .gitignore
-├── package.json
-```
-
-## 5. Создание главной страницы, подключение bootstrap
-
-### Создание index.html
-
-Мы создали проект, теперь давайте начнем писать код. Когда пользователь заходит на сайт, то ему сначала подгружается файл `index.html` с базовой версткой, а потом уже подгружаются стили и скрипты. Если в вашем приложении не будет `index.html` файла, то браузер не сможет загрузить его.
-
-* Создаем файл `index.html`
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Simple App</title>
-</head>
-<body>
-<div>Hello world!</div>
-</body>
-</html>
-```
-
-Если мы откроем html файл, то увидим страницу с надписью **Hello world!**.
-
-![Фото 1](./assets/photo1.png)
-
-Для того, чтобы было удобнее работать мы можем воспользоваться расширением Live Server, для этого открываем файл `index.html` и нажимаем `Go Live` в правом нижнем углу.
-
-### Подключение bootstrap
-
-Для того, чтобы было проще верстать используем библиотеку css стилей [bootstrap]. Это библиотека стилей, в которой можно брать верстку и применять у себя на сайте. Для подключения установим библиотеку через [npm][bootstrap-npm].
-
-* Устанавливаем библиотеку с помощью команды `npm i bootstrap`
-
-После установки библиотеки можно увидеть, что у нас появилась папка `node_modules` и файл `package-lock.json`. О них мы говорили выше. Так же изменился файл `package.json`, в нем появилась наша библиотека с зафиксированной версией.
-
-* Проверим, что мы успешно скачали bootstrap, для этого добавим кнопку из библиотеки компонентов в `index.html`
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Simple App</title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-</head>
-<body>
-<button type="button" class="btn btn-primary">Hello world!</button>
-
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-```
-
-![Фото 2](./assets/photo2.png)
-
-Как мы видим наша кнопка видна, значит мы все подключили успешно и можно переходить к написанию JavaScript кода.
-
-***По итогу мы имеем следующую структуру проекта.***
-
-```bash
-├── node_modules/
-├── .gitignore
-├── package-lock.json
-├── package.json
-├── index.html
-```
-
-### 6. Простая кнопка на JavaScript
-
-У нас есть приложение, которое имеет главную страницу. Сейчас у нас кнопка находится в файле `index.html`, попробуем ее из HTML файла и нарисовать с помощью JS. Для того, чтобы в JS получить доступ к нашему HTML дереву у нас должен быть корневой элемент. Он будет родителем и к нему мы будем добавлять остальные компоненты.
-
-* Добавляем корневой элемент в `index.html`
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Simple App</title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-</head>
-<body>
-<div id="root"></div>
-
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-```
-
-Теперь у нас есть корневой элемент, к котором мы можем обратиться из нашего JavaSctip. Создадим js файл, подключим его и попробуем обратиться к HTML дереву.
-
-* Создаем файл `main.js`, для доступа к HTML будем использовать **getElementById**
+Напишите функцию `concatenate`, которая принимает массив строк и символ-разделитель. Функция должна вернуть строчку
+склеенную по данному разделителю.
 
 ```js
-const root = document.getElementById('root');
+concatenate(['Я','Учусь','на','лучшей','кафедре'], ' ') // Я учусь на лучшей кафедре
 ```
 
-У нас есть простой JS файл, который получает корневой элемент. Для того, чтобы этот файл загрузился в браузер необходимо добавить его в наш `index.html`
+### Задание 1.2 (`1 уровень`)
 
-* Подключаем этот файл в `index.html`
+Напишите функцию `countIdentic(arr)`, которая возвращает количество повторяющихся элементов в массиве.
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Simple App</title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-</head>
-<body>
-<div id="root"></div>
-<script src="main.js" type="module"></script>
+### Задание 1.3 (`1 уровень`)
 
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-```
+Напишите функцию `sumOfSquares(arr)`, которая возвращает сумму квадратов значений массива.
 
-У нас в `main.js` файле есть корневой элемент. Попробуем в него добавить нашу кнопку, которую раньше мы создавали в HTML.
+### Задание 1.4 (`1 уровень`)
 
-* Добавляем кнопку в `main.js`
+Напишите функцию `getSumAndMultOfArray()`, который определяет сумму и произведение значений массива.
+
+### Задание 1.5 (`1 уровень`)
+
+Напишите функцию `moveElement(arr,from,to)`, которая позволяет переместить элемент массива из позиции from в позицию to.
+
+### Задание 1.6 (`1 уровень`)
+
+Напишите функцию `isEqualArrays`, которая сравнивает два массива и возвращает true, если они идентичны.
+
+### Задание 1.7 (`1 уровень`)
+
+Напишите функцию `isEqualObj`, которая сравнивает два объекта и возвращает true, если они идентичны.
+
+### Задание 1.8 (`1 уровень`)
+
+Вычислить среднее арифметическое элементов массива и вернуть его.
+
+### Задание 1.9 (`1 уровень`)
+
+Напишите функцию, которая заполняет новый массив предоставленным значением.
+Ожидаемый результат: (3, 'a') => ['a', 'a', 'a']
 
 ```js
-const root = document.getElementById('root');
-
-root.insertAdjacentHTML('beforeend', '<button type="button" class="btn btn-primary">Hello world 2!</button>')
+// * @param {number} arraySize - размер массива
+// * @param {?} data - значение для массива
+// * @returns {Array}
+  fill(arraySize, data) // ['a', 'a', 'a']
 ```
 
-![Фото 3](./assets/photo3.png)
+### Задание 1.10 (`1 уровень`)
 
-Как мы видим наша кнопка появилась на экране, значит мы правильно написали на JavaScript файл. Теперь попробуем написать что-то посложнее.
-
-***По итогу мы имеем следующую структуру проекта.***
-
-```bash
-├── node_modules/
-├── .gitignore
-├── package-lock.json
-├── package.json
-├── index.html
-├── main.js
-```
-
-### 7. Структурирование проекта
-
-#### Структура проекта
-
-Мы написали простую страничку на JS, но мы же не сможем вечно все писать в одном файле. Нам необходимо как-то разбивать наш проект по мелким файлам.
-
-Сейчас мы имеем следующее разбиение по файлам:
-
-```bash
-├── node_modules/
-├── .gitignore
-├── package-lock.json
-├── package.json
-├── index.html
-├── main.js
-```
-
-В фронтенде верстку разделяют на страницы (Pages) и компоненты (Components). Страница - это отдельная страница как наша главная. Компонент - маленькие блоки из которых состоит страница.
-
-Добавим дополнительные папки в нашу структуру:
-
-* `pages` - тут будут лежать наши страницы
-* `components` - тут будут лежать наши компоненты
-
-Теперь наша структура выглядит следующим образом:
-
-```bash
-├── node_modules/
-├── .gitignore
-├── package-lock.json
-├── package.json
-├── pages/
-├── components/
-├── index.html
-├── main.js
-```
-
-#### Страница на новой архитектуре
-
-Теперь попробуем переписать нашу страницу под новую архитектуру.
-
-* Создаем нашу страницу `pages/main/index.js`
+Напишите функцию `erase`, которая очищает массив от нежелательных значений, таких как false, undefined, пустые строки, ноль, null.
 
 ```js
-export class MainPage {
-
-}
+const data = [0, 1, false, 2, undefined, '', 3, null];
+console.log(erase(data)) // [1, 2, 3]
 ```
 
-Наша страница должна рендериться в root элемент. Добавим конструктор, где будем получать родительский элемент и сохранять его.
+## 2 уровень
 
-* Добавляем конструктор
+### Задание 2.1 (`2 уровень`)
+
+Напишите функцию `euclid`, которая позволяет находить НОД натуральных чисел.
+Функция должна работать с любым количеством аргументов
+
+### Задание 2.2 (`2 уровень`)
+
+Дан список неотрицательных целых чисел, повторяющихся элементов в списке нет.
+Нужно преобразовать это множество в строку, сворачивая соседние по числовому ряду числа в диапазоны.
+
+Пример
+
+[1,2,3,5,6,7, 10, 11, 12, 14, 16,17, 18] -> '1-7,10-12,14,16-18'
+
+### Задание 2.3 (`2 уровень`)
+
+Дана строка - последовательность, которая может состоять как из 0, так и 1. Необходимо найти максимальную последовательность 1 и вывести ее длину.
+
+Пример
+
+'1000000111100011111010111101111111' -> 7
+
+### Задание 2.4 (`2 уровень`)
+
+Напишите функцию diff, которая возвращает массив, содержащий все элементы первого, которые не находятся во втором.
+
+### Задание 2.5 (`2 уровень`)
+
+Напишите функцию findCouple(array, number), которая ищет в массиве все пары целых чисел, сумма которых равна заданному значению и возвращает их в виде массива строк.
+const neededNumber = 5;
+const array = [1, 6, 5, 2, 7, 5, 1, 4, 3, 9, 8, 11, 10, 18];
+
+findCouple(array, neededNumber) // '1+4, 2+3, ...'
+
+### Задание 2.6 (`2 уровень`)
+
+Качественная разница между двумя парами (a, b) и (c, d) определяется как (a * b) - (c * d).
+
+Например, качественная разница между (5, 6) и (2, 7) - это (5 * 6) - (2 * 7) = 16.
+Дан массив целых чисел, необходимо найти 4 различных индекса w, x, y, и z, таких что, качественная разница между парами (nums[w], nums[x]) и (nums[y], nums[z]) была максимальной.
+Функция возвращает максимальную качественную разницу.
+
+Входные данные: nums = [5,6,2,7,4]
+Результат: 34
+Пояснение: Мы можем выбрать индексы 1 и 3 для первой пары (6, 7) и индексы 2 и 4 для второй пары (2, 4).
+Качественная разница тогда - (6 * 7) - (2 * 4) = 34.
+
+### Задание 2.7 (`2 уровень`)
+
+Дана квадратная матрица matrix, верните сумму основной и побочной диагоналей матрицы.
+
+Ввод: matrix = [[1,2,3],
+[4,5,6],
+[7,8,9]]
+Выход: 25
+
+### Задание 2.8 (`2 уровень`)
+
+Дан массив целых чисел. Необходимо написать функцию, возвращающую сумму всех уникальных элементов. Уникальные - неповторяющиеся элементы.
+
+### Задание 2.9 (`2 уровень`)
+
+Написать функцию, которая проверит можно ли получить из одного массива другой каким-либо способом.
+
+Пример
+Даны два массива
+[1, 2, 3, 8, -2] и [2, 3, 8, 1, -2]
+Результат: true
+
+### Задание 2.10 (`2 уровень`)
+
+Даны массив строк words и строка str. Обе строки состоят только из строчных английских букв.
+
+Необходимо посчитать все слова, которые являются префиксами строки str и вывести их количество.
+
+Префикс строки - это подстрока, которая встречается в начале строки.
+Подстрока - это непрерывная последовательность символов внутри строки.
+
+Пример
+
+Входные данные: words = ["a", "b", "c", "ab","bc", "abc"], s = "abc"
+Вывод: 3
+
+### Задание 2.11 (`2 уровень`)
+
+Напишите код, объединяющий любое количество плоских массивов цифр в один. Функция должна вернуть строку, в которой будут идти все полученные цифры в порядке убывания их значений через пробел.
+
+Пример:
+
+Ввод:
+first = [1, 2, 3];
+second = [-1, -10, 20]
+
+Вывод:
+'20 3 2 1 -1 -10'
+
+### Задание 2.12 (`2 уровень`)
+
+Напишите функцию `isEqual`, которая сравнивает любые 2 значения и возвращает true, если они идентичны.
+Варианты значений по типам - все 6 типов и могут быть массивы. Технически массив, это Object, но чтобы явно его отделить
+будем "условно" считать его другим значением.
+
+### Задание 2.13 (`2 уровень`)
+
+Напишите функцию `removeValues`, возвращает новый массив без предоставленных значений. Используйте примитивные типы.
+
+Ожидаемый результат: [1, 2, 3, 1, 2] без 1, 2 => [3]
 
 ```js
-export class MainPage {
-    constructor(parent) {
-        this.parent = parent;
-    }
-}
+const data = [1, 2, 3, 1, 2];
+console.log(removeValues(data, 1, 2)); // [3]
 ```
 
-У нас есть родительский элемент, но наш нужна функция при вызове которой мы будем рендерить эту страницу.
+## 3 уровень
 
-* Добавляем функцию рендера
+### Задание 3.1 (`3 уровень`)
 
-```js
-export class MainPage {
-    constructor(parent) {
-        this.parent = parent;
-    }
+Напишите функцию `merge`, которая будет принимать на вход несколько объектов (любое количество),
+и возвращать единственный объект, содержащий все поля из всех объектов.
+Если одно и то же поле было в нескольких объектах, необходимо оставить значение,
+которое встретилось раньше
 
-    render() {
+### Задание 3.2 (`3 уровень`)
 
-    }
-}
-```
+Напишите функцию `inverse`, которая меняет порядок элементов в массике на противоположный.
+Если в функцию вторым аргументом передаётся число — то переставляются все элементы массива
+кроме нескольких первых (количество зависит от числа).
+Если число отрицательное — то на месте остаются элементы в конце массива
 
-* Добавляем логику рендера кнопки на странице
+### Задание 3.3 (`3 уровень`)
 
-```js
-render() {
-    this.parent.insertAdjacentHTML('beforeend', '<button type="button" class="btn btn-primary">Hello world 3!</button>');
-}
-```
+Напишите функцию `flatten`, которая будет принимать на вход массив массивов и создавать из них один общий массив.
+Массивы могут быть любой вложенности
 
-У нас есть класс страницы, теперь необходимо добавить вызов этого класса в нашем основном файле `main.js`
+Пример:
 
-* Добавляем вызов файла в `main.js`
+[1, 2, 3, [4, 5, 6, [10, 20, 30]]] -> [1, 2, 3, 4, 5, 6, 10, 20 ,30]
 
-```js
-import {MainPage} from "./pages/main/index.js";
+### Задание 3.4 (`3 уровень`)
 
-const root = document.getElementById('root');
+Напишите функцию `sort`, которая будет сортировать буквы в словах по алфавиту,
+а потом получившиеся слова в предложении — тоже.
+Первую букву каждого слова она сделает прописной, остальные — строчными
 
-const mainPage = new MainPage(root);
-mainPage.render();
-```
+### Задание 3.5 (`3 уровень`)
 
-![Фото 4](./assets/photo4.png)
+Напишите функцию `anagram`, которая будет принимать на вход массив слов
+и группировать его на группы слов-анаграмм.
+Выводить только группы из двух и более слов.
+Слова в группах, как и сами группы, должны быть отсортированными
 
-Все работает, кнопка видна на странице. Мы сказали, что у нас страница должна состоять из мелки компонентов, а сейчас верстка кнопки происходит на странице. Вынесем в компонент и добавим ее на странице.
+### Задание 3.6 (`3 уровень`)
 
-* Создаем наш компонент `components/button/index.js`
+Напишите функцию rle, которая реализует RLE сжатие
 
-```js
-export class ButtonComponent {
-    constructor(parent) {
-        this.parent = parent;
-    }
+### Задание 3.7 (`3 уровень`)
 
-    render() {
-        this.parent.insertAdjacentHTML('beforeend', '<button type="button" class="btn btn-primary">Hello world 4!</button>');
-    }
-}
-```
+Напишите функцию plainify, которая получает на вход обычный объект c вложенными свойствами, а возвращает plain-объект
 
-* Подключаем наш компонент на странице
+### Задание 3.8 (`3 уровень`)
 
-```js
-import {ButtonComponent} from "../../components/button/index.js";
+Проверить что строка является палиндромом. Палиндромом называется строка, которая пишется одинаково слева направо и справа налево. Написать 2 решения.
 
-// ...
+isPalindrom('А роза упала на лапу Азора') // true
+isPalindrom(121) // true
+isPalindrom(1890) // false
 
-render() {
-    const button = new ButtonComponent(this.parent)
-    button.render()
-}
-```
+## Повышенный уровень
 
-![Фото 5](./assets/photo5.png)
+### Задание 9 (`3,5 уровень`)
 
-Все работает, кнопка видна на странице. Теперь сделаем нашу страницу такой, чтобы она была готова к нашим данным.
+Напишите функцию solve, которая принимает на вход строку с математическим выражением, зависящим от переменной x и значение этой переменной, а возвращает вычисленное значение этого выражения.
+В выражении фигурируют операции сложения, вычитания, умножения.
+Используются только целые числа и скобки
 
-***По итогу мы имеем следующую структуру проекта.***
 
-```bash
-├── node_modules/
-├── .gitignore
-├── package-lock.json
-├── package.json
-└── pages
-    └── main
-        └── index.js
-└── components
-    └── button
-        └── index.js
-├── index.html
-├── main.js
-```
 
-## 8. Верстка главной страницы
-
-Теперь добавим на главную страницу список карточек. Для отображения будем использовать [карточки из bootstrap][bootstrap-card].
-
-* Создаем компонент карточки `components/product-card/index.js`
-
-```js
-export class ProductCardComponent {
-    constructor(parent) {
-        this.parent = parent;
-    }
-
-    render() {
-
-    }
-}
-```
-
-* Добавляем верстку карточки. Для удобства вынесем верстку в отдельную функцию
-
-```js
-getHTML() {
-    return (
-        `
-            <div class="card" style="width: 300px;">
-                <img class="card-img-top" src="https://i.pinimg.com/originals/c9/ea/65/c9ea654eb3a7398b1f702c758c1c4206.jpg" alt="картинка">
-                <div class="card-body">
-                    <h5 class="card-title">Акция</h5>
-                    <p class="card-text">Вот тут информация об акции</p>
-                    <button class="btn btn-primary"">Нажми на меня</button>
-                </div>
-            </div>
-        `
-    )
-}
-
-render() {
-    const html = this.getHTML()
-    this.parent.insertAdjacentHTML('beforeend', html)
-}
-```
-
-* Теперь добавим наш компонент на страницу
-
-```js
-import {ProductCardComponent} from "../../components/product-card/index.js";
-
-// ...
-
-render() {
-    const productCard = new ProductCardComponent(this.parent)
-    productCard.render()
-}
-```
-
-![Фото 6](./assets/photo6.png)
-
-Отлично, у нас отображается карточка. Сейчас у нас данные захардкожены в компонент, а нам бы хотелось прокидывать данные в компонент.
-
-* Добавим отрисовку компонента из данных
-
-```js
-getHTML(data) {
-    return (
-        `
-            <div class="card" style="width: 300px;">
-                <img class="card-img-top" src="${data.src}" alt="картинка">
-                <div class="card-body">
-                    <h5 class="card-title">${data.title}</h5>
-                    <p class="card-text">${data.text}</p>
-                    <button class="btn btn-primary">Нажми на меня</button>
-                </div>
-            </div>
-        `
-    )
-}
-
-render(data) {
-    const html = this.getHTML(data)
-    this.parent.insertAdjacentHTML('beforeend', html)
-}
-```
-
-Теперь у нас функция `render` принимает данные, которые будет отрисовывать. При вызове компонента нам необходимо прокидывать тестывое данные со страницы, потом это мы заменим на получение данных с бекенда.
-
-* Прокидываем тестовые данные в компонент со страницы
-
-```js
-getData() {
-    return {
-        id: 1,
-        src: "https://i.pinimg.com/originals/c9/ea/65/c9ea654eb3a7398b1f702c758c1c4206.jpg",
-        title: "Акция",
-        text: "У меня есть крутая акция"
-    }
-}
-
-render() {
-    const data = this.getData()
-    const productCard = new ProductCardComponent(this.parent)
-    productCard.render(data)
-}
-```
-
-![Фото 7](./assets/photo7.png)
-
-Отлично, данные отображаются. Теперт нам хотелось бы отрисовать больше чем один компонент. У нас может приходить список данных, для отрисовки в карточках, а сейчам мы умеем рисовать только одну карточку. Для этого нам нужно добавить родительски элемент на главной странице. В этот элемент мы будем добавлять все наши компоненты.
-
-* Добавляем родительский элемент
-
-```js
-get pageRoot() {
-    return document.getElementById('main-page')
-}
-
-getHTML() {
-    return (
-        `
-            <div id="main-page" class="d-flex flex-wrap"><div/>
-        `
-    )
-}
-
-render() {
-    this.parent.innerHTML = ''
-    const html = this.getHTML()
-    this.parent.insertAdjacentHTML('beforeend', html)
-
-    const data = this.getData()
-    const productCard = new ProductCardComponent(this.pageRoot)
-    productCard.render(data)
-}
-```
-
-У нас есть элемент, в который мы будем добавлять наши дочерние компоненты. Теперь надо изменить логику так, чтобы мы умели работать с массивом данных, а не с одним элементом.
-
-* Перерабатываем логику для работы с массивом данных
-
-```js
-getData() {
-    return [
-        {
-            id: 1,
-            src: "https://i.pinimg.com/originals/c9/ea/65/c9ea654eb3a7398b1f702c758c1c4206.jpg",
-            title: "Акция",
-            text: "Такой акции вы еще не видели 1"
-        },
-        {
-            id: 2,
-            src: "https://i.pinimg.com/originals/c9/ea/65/c9ea654eb3a7398b1f702c758c1c4206.jpg",
-            title: "Акция",
-            text: "Такой акции вы еще не видели 2"
-        },
-        {
-            id: 3,
-            src: "https://i.pinimg.com/originals/c9/ea/65/c9ea654eb3a7398b1f702c758c1c4206.jpg",
-            title: "Акция",
-            text: "Такой акции вы еще не видели 3"
-        },
-    ]
-}
-
-render() {
-    this.parent.innerHTML = ''
-    const html = this.getHTML()
-    this.parent.insertAdjacentHTML('beforeend', html)
-
-    const data = this.getData()
-    data.forEach((item) => {
-        const productCard = new ProductCardComponent(this.pageRoot)
-        productCard.render(item)
-    })
-}
-```
-
-![Фото 8](./assets/photo8.png)
-
-Мы смогли отрисовать сразу несколько компонентов, но если мы попробуем нажать на кнопку, то ничего не произойдет. Добавим обработчики нажатия на кнопку. Для того, чтобы нам это сделать нужно внутри компонента подписаться на собитие клик по кнопке и обработать вызов этой функции. Функция, которая будет срабатывать по клику будем прокидывать в компонент из страницы.
-
-* Добавим нашей кнопку уникальный id, чтобы по нему мы могли найти кнопку и подписаться на событие клика
-
-```js
-<button class="btn btn-primary" id="click-card-${data.id}" data-id="${data.id}">Нажми на меня</button>
-```
-
-У кнопки появился уникальный id и мы можем подписаться на клик по этой кнопки. Для подписки на событие используем функцию **addEventListener**
-
-* Добавляем подписку на нажатие кнопки
-
-```js
-addListeners(data, listener) {
-    document
-        .getElementById(`click-card-${data.id}`)
-        .addEventListener("click", listener)
-}
-
-render(data, listener) {
-    const html = this.getHTML(data)
-    this.parent.insertAdjacentHTML('beforeend', html)
-    this.addListeners(data, listener)
-}
-```
-
-У кнопки в нашей появился обработчик, который будет срабатывать при нажатии на нее. Добавим на главной странице функцию, которая будет срабатывать по нажатию и прокинем ее в компонент. При создании кнопки мы добавли ей data атрибут, чтобы при обработке мы могли его достать и узнать по какому элементу мы нажали.
-
-* Добавляем обработчик на главной странице
-
-```js
-clickCard(e) {
-    const cardId = e.target.dataset.id
-}
-
-const productCard = new ProductCardComponent(this.pageRoot)
-productCard.render(item, this.clickCard.bind(this))
-```
-
-Теперь у нас есть все что нам нужно, осталось создать вторую страницу и нарисовать ее.
-
-***По итогу мы имеем следующую структуру проекта.***
-
-```bash
-├── node_modules/
-├── .gitignore
-├── package-lock.json
-├── package.json
-└── pages
-    └── main
-        └── index.js
-└── components
-    └── product-card
-        └── index.js
-├── index.html
-├── main.js
-```
-
-## 9. Верстка страницы продукта
-
-У нас есть главная страница, добавим страницу продукта.
-
-* Создаем страницу продукта `pages/product/index.js`. Наша страница будет принимать дополнительный аргумент id, номер выбранной страницы
-
-```js
-export class ProductPage {
-    constructor(parent, id) {
-        this.parent = parent
-        this.id = id
-    }
-
-    getData() {
-        return {
-            id: 1,
-            src: "https://i.pinimg.com/originals/c9/ea/65/c9ea654eb3a7398b1f702c758c1c4206.jpg",
-            title: `Акция ${this.id}`,
-            text: "Такой акции вы еще не видели"
-        }
-    }
-
-    get pageRoot() {
-        return document.getElementById('product-page')
-    }
-
-    getHTML() {
-        return (
-            `
-                <div id="product-page"></div>
-            `
-        )
-    }
-
-    render() {
-        this.parent.innerHTML = ''
-        const html = this.getHTML()
-        this.parent.insertAdjacentHTML('beforeend', html)
-    }
-}
-```
-
-У нас есть страница продукта, нужна создать компонент, который мы будем отрисовывать на этой странице.
-
-* Создаем компонент продукта `components/product/index.js`
-
-```js
-export class ProductComponent {
-    constructor(parent) {
-        this.parent = parent
-    }
-
-    getHTML(data) {
-        return (
-            `
-                <div class="card mb-3" style="width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="${data.src}" class="img-fluid" alt="картинка">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">${data.title}</h5>
-                                <p class="card-text">${data.text}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `
-        )
-    }
-
-    render(data) {
-        const html = this.getHTML(data)
-        this.parent.insertAdjacentHTML('beforeend', html)
-    }
-}
-```
-
-* Добавим отрисовку компонента на странице продукта
-
-```js
-import {ProductComponent} from "../../components/product/index.js";
-
-// ...
-
-render() {
-    this.parent.innerHTML = ''
-    const html = this.getHTML()
-    this.parent.insertAdjacentHTML('beforeend', html)
-
-    const data = this.getData()
-    const product = new ProductComponent(this.pageRoot)
-    product.render(data)
-}
-```
-
-У нас есть страница продукта, сделаем так, чтобы при нажатии на карточку на главной странице у нас открывалась страница продукта.
-
-* Добавляем открытие страницы продукта при нажатии на карточку
-
-```js
-import {ProductPage} from "../product/index.js";
-
-// ...
-
-clickCard(e) {
-    const cardId = e.target.dataset.id
-
-    const productPage = new ProductPage(this.parent, cardId)
-    productPage.render()
-}
-```
-
-![Фото 9](./assets/photo9.png)
-
-Все работает. При нажатии на кнопку в карточке на главной странице у нас открывается страница продукта. Для удобства добавим кнопку, которая будет возвращать на главную страницу.
-
-* Создаем компонент `components/back-button/index.js`
-
-```js
-export class BackButtonComponent {
-    constructor(parent) {
-        this.parent = parent;
-    }
-
-    addListeners(listener) {
-        document
-            .getElementById("back-button")
-            .addEventListener("click", listener)
-    }
-
-    getHTML() {
-        return (
-            `
-                <button id="back-button" class="btn btn-primary" type="button">Назад</button>
-            `
-        )
-    }
-
-    render(listener) {
-        const html = this.getHTML()
-        this.parent.insertAdjacentHTML('beforeend', html)
-        this.addListeners(listener)
-    }
-}
-```
-
-* Добавляем кнопку на страницу продукта и ее обработчик
-
-```js
-import {BackButtonComponent} from "../../components/back-button/index.js";
-import {MainPage} from "../main/index.js";
-
-// ...
-
-clickBack() {
-    const mainPage = new MainPage(this.parent)
-    mainPage.render()
-}
-
-render() {
-    this.parent.innerHTML = ''
-    const html = this.getHTML()
-    this.parent.insertAdjacentHTML('beforeend', html)
-
-    const backButton = new BackButtonComponent(this.pageRoot)
-    backButton.render(this.clickBack.bind(this))
-
-    const data = this.getData()
-    const stock = new ProductCardComponent(this.pageRoot)
-    stock.render(data)
-}
-```
-
-![Фото 10](./assets/photo10.png)
-
-Все работает, если нажать на кнопку, то мы вернемся обратно на главную страницу. На этом лабораторная работа закончилась.
-
-***По итогу мы имеем следующую структуру проекта.***
-
-```bash
-├── node_modules/
-├── .gitignore
-├── package-lock.json
-├── package.json
-└── pages
-    └── main
-        └── index.js
-    └── product
-        └── index.js
-└── components
-    └── product-card
-        └── index.js
-    └── product
-        └── index.js
-    └── back-button
-        └── index.js
-├── index.html
-├── main.js
-```
-
-## Дополнительные материалы
-
-Создать двухстраничное приложение из примера по вариантам.
-Вариант состоит из темы и компонента, который необходимо использовать.
-Все данные должны соответствовать вашей теме.
-Компонент можно применить по своему усмотрению.
-
-Варианты:
-
-1. Тема - собаки, Компонент - [аккордеон](https://bootstrap-4.ru/docs/5.2/components/accordion/).
-2. Тема - кошки, Компонент - [уведомления](https://bootstrap-4.ru/docs/5.2/components/alerts/).
-3. Тема - продукты, Компонент - [значки](https://bootstrap-4.ru/docs/5.2/components/badge/).
-4. Тема - учебные предметы, Компонент - [карусель](https://bootstrap-4.ru/docs/5.2/components/carousel/).
-5. Тема - дизайн, Компонент - [информер](https://bootstrap-4.ru/docs/5.2/components/popovers/).
-6. Тема - финансы, Компонент - [всплывающие сообщения](https://bootstrap-4.ru/docs/5.2/components/toasts/).
-7. Тема - фотографии, Компонент - [группа кнопок](https://bootstrap-4.ru/docs/5.2/components/button-group/).
-
-## Полезные ссылки
-
-1. Почитать про **document** [тут][document]
-2. Почитать про **getElementById** [тут][getElementById]
-3. Почитать про **insertAdjacentHTML** [тут][insertAdjacentHTML]
-4. Почитать про **event** [тут][event]
-5. Почитать про **addEventListener** [тут][addEventListener]
-
-[vs-code]: https://code.visualstudio.com
-[vs-code-live-server]: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
-[v8]: https://v8.dev
-[node]: https://nodejs.org
-[node-install]: https://nodejs.org/en/download
-[npm]: https://www.npmjs.com
-[package.json]: https://docs.npmjs.com/cli/v9/configuring-npmpackage-json
-[package-lock.json]: https://docs.npmjs.com/cli/v9/configuring-npm/package-lock-json
-[dom-api]: https://learn.javascript.ru/dom-nodes
-[about-gitignore]: https://tyapk.ru/blog/post/gitignore
-[bootstrap]: https://bootstrap-4.ru
-[bootstrap-npm]: https://www.npmjs.com/package/bootstrap
-[bootstrap-card]: https://bootstrap-4.ru/docs/5.2/components/card
-[document]: https://developer.mozilla.org/ru/docs/Web/API/Document
-[getElementById]: https://developer.mozilla.org/ru/docs/Web/API/Document/getElementById
-[insertAdjacentHTML]: https://developer.mozilla.org/ru/docs/Web/API/Element/insertAdjacentHTML
-[event]: https://developer.mozilla.org/ru/docs/Web/API/Event
-[addEventListener]: https://developer.mozilla.org/ru/docs/Web/API/EventTarget/addEventListener
